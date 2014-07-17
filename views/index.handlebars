@@ -17,11 +17,43 @@
       <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
 </head>
 
-<body>
-      <div class="container">
+<body ng-app="spotifyApp">
+    <div class="container" ng-controller="SongListCtrl">
       	<h1>This is a boilerplate</h1>
+        
+        <div>
+                <audio controls>
+                  <source src="http://10.16.189.76:8000/stream" autoplay type="audio/ogg">
+                  Your browser does not support the audio element.
+                </audio>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <!--Sidebar content-->
+            <input type="text" ng-model="query"> 
+            <button ng-click="searchSongs()" type="submit" >Search</button>
+        </div>
+
+          <div class="col-md-10">
+            <!--Body content-->
+
+            <ul class="songs">
+              <li ng-repeat="song in songs | filter:query">
+                <a ng-click="selectSong(song.href)"><strong>((song.name))</strong> by ((song.artists[0].name))</a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+
+
     </div>
+
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="js/controllers.js"></script>
+
 </body>
 </html>
