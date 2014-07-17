@@ -3,17 +3,13 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars');
+var fs = require('fs');
 var app = express();
-var nswh = require('node-spotify-webhelper');
-var spotify = new nswh.SpotifyWebHelper();
+var spotify = require('spotify-node-applescript');
 
 
 //route files to load
 var index = require('./routes/index');
-
-//database setup - uncomment to set up your database
-//var mongoose = require('mongoose');
-//mongoose.connect(process.env.MONGOHQ_URL || 'mongodb://localhost/DATABASE1);
 
 //Configures the Template engine
 app.engine('handlebars', handlebars());
@@ -29,15 +25,47 @@ app.set('port', process.env.PORT || 2014);
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
+
+//Return metadata
 app.get('/metadata', function(req, res) {
-  spotify.getStatus(function (err, res) {
+  spotify.getTrack(function (err, track) {
     if (err) {
         return console.error(err);
     }
-    console.info('currently playing:', 
-        res.track.artist_resource.name, '-',  
-        res.track.track_resource.name);
+        console.log(track);
+        res.json(track);
     });
 });
 
+//Return image artwork
+app.get('/artwork', function(req, res) {
+    spotify.getArtwork(function(err, artwork) {
+            if (err) {
+                return console.error(err);
+            }
+                console.log(artwork);
+        });
+    res.redirect('/');
+    });
+
+//move files to node directory
+function copyFile(source, target, callback) {
+    var cbCalled = false;
+    var read = fs.createReadStream(source);
+    read.on("error", function(err) {
+            done(err);
+            });
+    var write = fs.createWriteStream(target);
+    write.on("error", function(err) {
+            done(err);
+            })
+    read.pipe(write);
+    //sets error message
+    function done(err) {
+        if (!cbCalled) {
+            callback(err);
+            cbCalled = true;
+        }
+    }
+}
 

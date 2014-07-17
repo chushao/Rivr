@@ -8,7 +8,7 @@
   "dependencies": {
     "express": "3.x",
     "express3-handlebars": "*",
-    "node-spotify-webhelper": "*",
+    "spotify-node-applescript": "*",
     "passport-facebook": "*",
     "passport-twitter": "*",
     "dotenv": "*"
