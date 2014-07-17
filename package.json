@@ -11,7 +11,8 @@
     "spotify-node-applescript": "*",
     "passport-facebook": "*",
     "passport-twitter": "*",
-    "dotenv": "*"
+    "dotenv": "*",
+    "nodemon": "*"
   },
   "engines": {
     "node": "0.10.x"

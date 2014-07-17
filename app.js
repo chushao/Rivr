@@ -40,6 +40,7 @@ app.get('/metadata', function(req, res) {
     });
 });
 
+
 //Return image artwork
 app.get('/artwork', function(req, res) {
     spotify.getArtwork(function(err, artwork) {
@@ -92,4 +93,9 @@ function copyFile(source, target, callback) {
         }
     }
 }
+
+app.post('/sendTrack', function(req, res) {
+    console.log("track id is: " + req.body.id);
+});
+
 
