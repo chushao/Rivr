@@ -11,6 +11,9 @@ var spotify = require('spotify-node-applescript');
 //route files to load
 var index = require('./routes/index');
 
+//global variable, don't judge
+var skipButton = 0;
+
 //Configures the Template engine
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
@@ -51,6 +54,22 @@ app.get('/artwork', function(req, res) {
                 res.end(data);
             });
     });
+});
+
+//Skip button
+app.get('/skip', function(req, res) {
+    skipButton++;
+    console.log(skipButton);
+    if ((skipButton % 5) == 0) {
+        console.log("HIT");
+        skipButton = 0;
+        spotify.next(function(err) { 
+            if (err) {
+                console.log(err);
+            }
+        });
+    }
+    res.redirect('/');
 });
 
 //move files to node directory
