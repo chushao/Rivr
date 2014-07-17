@@ -44,10 +44,15 @@ app.get('/artwork', function(req, res) {
             if (err) {
                 return console.error(err);
             }
-                console.log(artwork);
-        });
-    res.redirect('/');
+            fs.readFile(artwork, function(error, data) {
+                if (error) {
+                    throw error;
+                }
+                res.writeHead(200, {'Content-Type': 'image/jpeg' });
+                res.end(data);
+            });
     });
+});
 
 //move files to node directory
 function copyFile(source, target, callback) {
