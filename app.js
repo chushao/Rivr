@@ -45,6 +45,7 @@ var spotifyApi = new SpotifyWebApi({
     redirectUri : 'http://10.16.189.76:2014'
 });
 
+spotifyApi.setAccessToken(process.env.SPOTIFYACCESSTOKEN);
 passport.use(new SpotifyStrategy({
     clientID: process.env.SPOTIFYCLIENTID,
     clientSecret: process.env.SPOTIFYCLIENTSECRET,
@@ -54,7 +55,7 @@ passport.use(new SpotifyStrategy({
         process.nextTick(function() {
             gbaccesstoken = accessToken;
             console.log(gbaccesstoken);
-            spotifyApi.setAccessToken(accessToken);
+            //spotifyApi.setAccessToken(accessToken);
             return done(null, profile);
         });
     }));
