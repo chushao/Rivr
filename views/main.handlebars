@@ -13,38 +13,69 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->        
+    <link rel="icon" type="image/png" href="img/rivr-icon.png">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
     <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/chat.css">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300italic,700' rel='stylesheet' type='text/css'>
 </head>
 
-<body>
-    <div class="navbar" role="navigation">
+<body ng-app="spotifyApp">
+    <div id="main_nav" class="navbar" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Rivr</a>
+                <a class="navbar-brand" href="#">
+                    <img id="logo" src="img/rivr-logo.png"/>
+                </a>
             </div>
-            <div class="collapse navbar-collapse">
+            <!--<div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-            </div><!--/.nav-collapse -->
+            </div>--><!--/.nav-collapse -->
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" ng-controller="SongListCtrl">
         <div id="row1" class="row">
             <div class="left col-md-7"> 
-                <div id="chat" class="well">
-                    chat
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="input-group">
+                          <div class="input-group-btn">
+                            <input type="text" ng-model="query" class="song_search form-control" placeholder="Find a song">
+                            <button id="findSongs" ng-click="searchSongs()" type="submit" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Get music</button>
+                            <ul id="searchResults" class="dropdown-menu" role="menu">
+                              <li ng-repeat="song in songs | filter:query">
+                                <a class="songLink" ng-click="selectSong(song.href)">
+                                    <span class="song_name">((song.name))</span> 
+                                    <span class="artist_name">((song.artists[0].name))</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </div><!-- /btn-group -->
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+
+                <!--chat-->
+                <div id="chat">
+                    <ul class="pages">
+                        <li class="chat page">
+                            <div class="chatArea">
+                                <ul class="messages"></ul>
+                            </div>
+                            <input class="inputMessage" placeholder="Type here..."/>
+                        </li>
+                        <li class="login page">
+                            <div class="form">
+                                <h3 class="title">What's your name?</h3>
+                                <input class="usernameInput" type="text" maxlength="14" />
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div> <!--end left column-->
 
@@ -55,17 +86,21 @@
                         <li id="recentlyPlayedTab"><a href="#recentlyPlayed" data-toggle="tab">Recently Played</a></li>
                     </ul>
 
-                    <div class="tab-content">
-                        <div id="nowPlaying" class="tab-pane active">
+                    <div id="playlist_tabs" class="tab-content">
+                        <div id="nowPlaying" class="tab-pane active fade in">
                             <div id="song_visual">
                                 <img src="/artwork"/>
-                                <div id="song_bottom_bar">
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-play"></span>
-                                        <span class="glyphicon glyphicon-volume-off"></span>
-                                    </a>
-                                </div>
                             </div>
+                            <div id="song_bottom_bar">
+                                <a id="pauseButton" ng-click="playSong()">
+                                    <span class="glyphicon glyphicon-pause"></span>
+                                </a>
+                            <div id="button_skip">
+                                <button ng-click="skipSong()" type="submit" class="btn btn-default">Skip Song</button>
+                                <br/>((skipCounter - 1)) Votes to Skip
+                            </div>
+                            </div>
+                        <div id="playlist_wrapper">
                             <ul id="main_playlist" class="songlist">
                                 <li>
                                     <span class="song_name">The Ultimate Showdown of Ultimate Destiny (super awesome untz untz remix)</span> 
@@ -83,10 +118,11 @@
                                     <span class="song_length">4:36</span>
                                 </li>
                             </ul>
-                            <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"></span>
-                            </a>
                         </div>
-                        <div id="recentlyPlayed" class="tab-pane">
+                            <button id="add_song" class="btn btn-default" data-toggle="modal" data-target="#addSongModal"><span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                        <div id="recentlyPlayed" class="tab-pane fade">
                             <ul id="recently_played" class="songlist">
                                 <li>
                                     <span class="song_name">I Am The Best</span> 
@@ -105,9 +141,19 @@
             </div> <!--end right column-->
         </div> <!--end row 1-->
 
+              </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     </div> <!--end container-->
+
+    
+
+    <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script src="js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/controllers.js"></script>
 </body>
 </html>

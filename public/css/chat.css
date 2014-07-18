@@ -2,12 +2,9 @@
   box-sizing: border-box;
 }
 
-html {
+#chat, input {
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
-}
-
-html, input {
   font-family:
     "HelveticaNeue-Light",
     "Helvetica Neue Light",
@@ -41,7 +38,7 @@ ul {
 .page {
   height: 100%;
   position: absolute;
-  width: 100%;
+  width: 95.5%;
 }
 
 /* Login Page */
@@ -112,6 +109,7 @@ ul {
 .chatArea {
   height: 100%;
   padding-bottom: 60px;
+  border-radius: 6px 6px 6px 6px;
 }
 
 .messages {
@@ -134,9 +132,13 @@ ul {
 }
 
 /* Input */
+.inputMessage:hover,.inputMessage:focus{
+  border: 2px solid #3DE4CD;
+}
 
 .inputMessage {
-  border: 10px solid #000;
+  border: 2px solid #979B9B;
+  border-radius: 0px 0px 6px 6px;
   bottom: 0;
   height: 60px;
   left: 0;
