@@ -20,7 +20,6 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
   $scope.songAlbum = "N/A";
 
 
-
     (function tick() {
         $http.get('/metadata').success(function (data) {
 
@@ -88,6 +87,15 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
             $scope.skipFlag = false;
             $timeout(skipCheck, 1000*300);
     })();
+
+  $scope.fullScreen = function(){
+    var element = document.getElementById("fullWidthPlayer");
+    element.webkitRequestFullScreen();
+  }
+
+  $scope.cancelFullScreen = function(){
+    document.webkitCancelFullScreen(); 
+  }
 
   $scope.searchSongs = function(){
       if($scope.query != ""){
