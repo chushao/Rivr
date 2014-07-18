@@ -19,7 +19,17 @@
 </head>
 
 <body ng-app="spotifyApp">
+
     <div class="container" ng-controller="SongListCtrl">
+
+    <div ng-show="added==1" class="alert alert-warning alert-dismissible" role="alert">
+        <button ng-click="added=false" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <strong>Success!</strong> You have added a song to the stream.
+    </div>
+    <div ng-show="skip==true" class="alert alert-danger alert-dismissible" role="alert">
+        <button ng-click="skip=false" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <strong>Don't like this song?</strong> If 5 people vote to skip, the stream will go to the next song.
+    </div>
       	<h1>This is a boilerplate</h1>
         
         <div>
@@ -32,7 +42,7 @@
         <div class="row">
           <div class="col-md-2">
             <!--Sidebar content-->
-            <input type="text" ng-model="query"> 
+            <input type="text" ng-model="query" placeholder="Search for a Song..."> 
             <button ng-click="searchSongs()" type="submit" >Search</button>
             <button ng-click="skipSong()" type="submit" >Skip Song</button>
             <br/>((skipCounter - 1)) Votes to Skip
