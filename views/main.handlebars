@@ -1,0 +1,113 @@
+<!doctype html>
+
+<html>
+<head>
+	<title>Rivr</title>	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->        
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300italic,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div class="navbar" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Rivr</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="row1" class="row">
+            <div class="left col-md-7"> 
+                <div id="chat" class="well">
+                    chat
+                </div>
+            </div> <!--end left column-->
+
+            <div class="right col-md-5" >
+                <div id="main_playlist_wrapper" class="playlist_wrapper well well-lg">
+                    <ul id="playlist_nav" class="nav nav-tabs" role="tablist">
+                        <li id="nowPlayingTab" class="active"><a href="#nowPlaying" data-toggle="tab">Now Playing</a></li>
+                        <li id="recentlyPlayedTab"><a href="#recentlyPlayed" data-toggle="tab">Recently Played</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="nowPlaying" class="tab-pane active">
+                            <div id="song_visual">
+                                <img src="/artwork"/>
+                                <div id="song_bottom_bar">
+                                    <a href="#">
+                                        <span class="glyphicon glyphicon-play"></span>
+                                        <span class="glyphicon glyphicon-volume-off"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <ul id="main_playlist" class="songlist">
+                                <li>
+                                    <span class="song_name">The Ultimate Showdown of Ultimate Destiny (super awesome untz untz remix)</span> 
+                                    <span class="artist_name">Lemon Demon</span>
+                                    <span class="song_length">3:14</span>
+                                </li>
+                                <li>
+                                    <span class="song_name">I Am The Best</span> 
+                                    <span class="artist_name">2NE1</span>
+                                    <span class="song_length">4:24</span>
+                                </li>
+                                <li>
+                                    <span class="song_name">Clarity</span> 
+                                    <span class="artist_name">Zedd</span>
+                                    <span class="song_length">4:36</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                        </div>
+                        <div id="recentlyPlayed" class="tab-pane">
+                            <ul id="recently_played" class="songlist">
+                                <li>
+                                    <span class="song_name">I Am The Best</span> 
+                                    <span class="artist_name">2NE1</span>
+                                    <span class="song_length">4:24</span>
+                                </li>
+                                <li>
+                                    <span class="song_name">Clarity</span> 
+                                    <span class="artist_name">Zedd</span>
+                                    <span class="song_length">4:36</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> <!--tab-content-->
+                </div> <!--playlist wrapper-->
+            </div> <!--end right column-->
+        </div> <!--end row 1-->
+
+    </div> <!--end container-->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

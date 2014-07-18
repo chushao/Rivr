@@ -53,6 +53,8 @@ app.get('/artwork', function(req, res) {
     });
 });
 
+app.get('/main', index.main);
+
 //move files to node directory
 function copyFile(source, target, callback) {
     var cbCalled = false;
