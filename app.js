@@ -5,6 +5,7 @@ var path = require('path');
 var handlebars = require('express3-handlebars');
 var fs = require('fs');
 var spotify = require('spotify-node-applescript');
+var SpotifyWebApi = require('spotify-web-api-node');
 
 
 var passport = require('passport');
@@ -38,6 +39,12 @@ function ensureAuthenticated(req, res, next) {
   res.redirect('/login');
 }
 
+var spotifyApi = new SpotifyWebApi({
+    clientId: process.env.SPOTIFYCLIENTID,
+    clientSecret: process.env.SPOTIFYCLIENTSECRET,
+    redirectUri : 'http://10.16.189.76:2014'
+});
+
 passport.use(new SpotifyStrategy({
     clientID: process.env.SPOTIFYCLIENTID,
     clientSecret: process.env.SPOTIFYCLIENTSECRET,
@@ -47,6 +54,7 @@ passport.use(new SpotifyStrategy({
         process.nextTick(function() {
             gbaccesstoken = accessToken;
             console.log(gbaccesstoken);
+            spotifyApi.setAccessToken(accessToken);
             return done(null, profile);
         });
     }));
@@ -73,7 +81,7 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 app.get('/auth/spotify',
-    passport.authenticate('spotify', {scope: 'user-read-email'}),
+    passport.authenticate('spotify', {scope: ['playlist-modify', 'user-read-private', 'user-read-email', 'playlist-modify-private']}),
     function(req, res) {
         //YOU SHOULD NEVER GET HERE
         console.log("What the fuck?");
@@ -154,9 +162,28 @@ function copyFile(source, target, callback) {
     }
 }
 
-app.post('/sendTrack', ensureAuthenticated, function(req, res) {
+app.post('/sendTrack', function(req, res) {
     console.log("track id is: " + req.body.id);
-     
+    var playlistPath =  '/v1/users/1235132793/playlists/0ImTPrxa2wyQ0OFTsievA3/tracks?uris=' + req.body.id;
+    console.log(playlistPath);
+    spotifyApi.addTracksToPlaylist('1235132793', '0ImTPrxa2wyQ0OFTsievA3', [req.body.id])
+        .then(function(data) {
+            console.log(data);
+        }, function(err) {
+            console.log( "ERR: ", err);
+    });
+/**    var options = {
+        host: 'api.spotify.com',
+        port: 80,
+        path: playlistPath,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            '
+    };
+
+    var req = http.request(options, function(res) {
+        console.log **/
 });
 
 

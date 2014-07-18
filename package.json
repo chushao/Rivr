@@ -9,6 +9,7 @@
     "express": "3.x",
     "express3-handlebars": "*",
     "spotify-node-applescript": "*",
+    "spotify-web-api-node": "*",
     "passport": "*",
     "passport-spotify": "*",
     "dotenv": "*",
