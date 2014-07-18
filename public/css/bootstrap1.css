@@ -3984,7 +3984,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-form .form-control {
     display: inline-block;
-    width: auto;
+    width: 350%;
     vertical-align: middle;
   }
   .navbar-form .input-group {
