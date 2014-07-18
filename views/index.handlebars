@@ -54,21 +54,12 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-        <div class="blackmodal" ng-animate=" 'animate' " ng-show="blackout==true">
-            <ul class="songs">
-              <li class="list-format" ng-animate=" 'animate' " ng-repeat="song in songs | filter:query">
-                <a class="list-links text-center" ng-click="selectSong(song.href)"><span class = "song-text">((song.name))</span> <span class = "artist-text"> ((song.artists[0].name))</span></a>
-              </li>
-            </ul>
-        </div>
 
-
-
-    <div ng-show="added==1" class="alert alert-success alert-dismissible" role="alert">
+    <div ng-show="added==1" class="alert-style alert alert-success alert-dismissible" role="alert">
         <button ng-click="added=false" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <strong>Success!</strong> You have added a song to the stream.
     </div>
-    <div ng-show="skip==true" class="alert alert-danger alert-dismissible" role="alert">
+    <div ng-show="skip==true" class="alert-style alert alert-danger alert-dismissible" role="alert">
         <button ng-click="skip=false" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <strong>Don't like this song?</strong> If 5 people vote to skip, the stream will go to the next song.
     </div>
@@ -130,7 +121,7 @@
                                     <span class="glyphicon glyphicon-pause"></span>
                                 </a>
                             <div id="button_skip">
-                                <button ng-click="skipSong()" type="submit" class="btn btn-default">Skip Song</button>
+                                <button ng-click="skipSong()" type="button" ng-disabled="skipFlag==true" class="btn btn-default">Skip Song</button>
                                 <br/>((skipCounter - 1)) Votes to Skip
                             </div>
                             </div>
@@ -154,7 +145,13 @@
     </div><!-- /.modal -->
     </div> <!--end container-->
 
-
+        <div class="blackmodal" ng-animate=" 'animate' " ng-show="blackout==true">
+            <ul class="songs">
+              <li class="list-format" ng-click="selectSong(song.href)" ng-repeat="song in songs | filter:query">
+                <a class="list-links" ><span class = "song-text">((song.name))</span> <span class = "artist-text"> ((song.artists[0].name))</span></a>
+              </li>
+            </ul>
+        </div>
     </div>
     <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
     <script src="https://code.jquery.com/jquery.js"></script>

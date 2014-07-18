@@ -83,51 +83,43 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
 
             //console.log(data);
             $scope.skipFlag = false;
-            $timeout(skipCheck, 1000*15);
+            $timeout(skipCheck, 1000*300);
     })();
 
   $scope.searchSongs = function(){
-    $scope.blackout = true;
-    if ($scope.query == ""){
-      $scope.songs = [{
-        name: "No results found.  Please try a new search.",
-        artists: [{
-          name: ""
-        }]
-      }];
-    } else {
-    $http({method: 'GET', url: 'http://ws.spotify.com/search/1/track.json?q=' + $scope.query}).
-    success(function(data, status, headers, config) {
-      // this callback will be called asynchronously
-      // when the response is available
-      //  
+      $scope.blackout = true;
+      if ($scope.query == ""){
+        $scope.songs = [{
+          name: "No results found.  Please try a new search.",
+          artists: [{
+            name: ""
+          }]
+        }];
+      } else {
+      $http({method: 'GET', url: 'http://ws.spotify.com/search/1/track.json?q=' + $scope.query}).
+      success(function(data, status, headers, config) {
+        // this callback will be called asynchronously
+        // when the response is available
+        //  
+        //console.log(data.tracks);
 
-      $scope.songs = data.tracks;
-      $scope.artists = data.tracks.artists;
-      // console.log("tracks: " + data.tracks);
-      // console.log("track href: " + data.tracks[0].href);
-      // console.log("artists: " + data.tracks.artists);
-    }).
-    error(function(data, status, headers, config) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
-      console.log("error retrieving data from Spotify");
-    });
-  }
-
+        $scope.songs = data.tracks;
+        $scope.artists = data.tracks.artists;
+        // console.log("tracks: " + data.tracks);
+        // console.log("track href: " + data.tracks[0].href);
+        // console.log("artists: " + data.tracks.artists);
+      }).
+      error(function(data, status, headers, config) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log("error retrieving data from Spotify");
+      });
+    }
   }
 
   $scope.selectSong = function(trackId){
     console.log("track ID recieved: " + trackId);
     var trackData = {"id": trackId};
-    // $http({
-    //     method: 'POST',
-    //     url: '/sendTrack',
-    //     data: trackId,
-    //     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-    // });
-    // 
-    // 
     $http({method: 'POST',
             url: '/sendTrack',
             data: trackData,

@@ -164,6 +164,7 @@ ul {
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 5%;
+  cursor:pointer;
 }
 
 li, ul{
