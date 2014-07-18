@@ -34,7 +34,7 @@
     </div>
       	<h1>This is a boilerplate</h1>
 
-    <!--    <div class="row">
+<!--       <div class="row">
 <div id="container"></div>
 <div id="warning1" class="message">
   <h1>
@@ -70,9 +70,18 @@
             <!--Sidebar content-->
             <input type="text" ng-model="query" placeholder="Search for a Song..."> 
             <button ng-click="searchSongs()" type="submit" >Search</button>
-            <button ng-click="skipSong()" type="submit" >Skip Song</button>
+            <button ng-click="skipSong();skipFlag=true" ng-disabled="skipFlag" type="submit" >Skip Song</button>
             <button ng-click="playSong()" type="submit" >Play/Mute</button>
             <br/>((skipCounter - 1)) Votes to Skip
+            <img id="albumCover" ng-src="/artwork" alt="No Art" />
+            <br/><strong>Name:</strong> ((songName))
+            <br/><strong>Duration:</strong> ((songDuration))
+            <br/><strong>Artist:</strong> ((songArtist))
+            <br/><strong>Album:</strong> ((songAlbum))
+            <br/><strong>Upcoming Songs:</strong>
+            <li ng-repeat="song in upcomingSongs">
+                <strong>((song.name))</strong> by ((song.artist))</a>
+            </li>
         </div>
 
           <div class="col-md-10">
@@ -107,9 +116,10 @@
     <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script src='http://soulwire.github.io/sketch.js/js/sketch.min.js'></script> 
     <!--<script src="js/visualizer.js"></script>-->
+    <script src='js/sketch.min.js'></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="js/underscore.js"></script>
     <script src="js/chat.js"></script>
         <script src="js/controllers.js"></script>
 
