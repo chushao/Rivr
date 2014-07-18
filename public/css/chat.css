@@ -134,11 +134,12 @@ ul {
 
 /* Input */
 .inputMessage:hover,.inputMessage:focus{
-  border: 2px solid white;
+  border: 2px solid #8A8A8A;
+  color: white;
 }
 
 .inputMessage {
-  border: 2px solid white;
+  border: 2px solid #8A8A8A;
   border-radius: 0px 0px 6px 6px;
   bottom: 0;
   height: 60px;
@@ -148,6 +149,9 @@ ul {
   position: absolute;
   right: 0;
   width: 100%;
+  background-color: #8A8A8A;
+  color: white;
+  font-size: 20px;
 }
 
 
@@ -183,7 +187,7 @@ li, ul{
     left:0;
     right:0;
     bottom:0;
-    background-color:rgba(0, 0, 0, 0.75);
+    background-color:rgba(0, 0, 0, 0.85);
     z-index:9999;
     color:white;
     overflow-y: hidden;

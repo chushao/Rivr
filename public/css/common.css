@@ -165,13 +165,14 @@ airmail://message?mail=alex.yang%40cbsinteractive.com&messageid=CALb61nKARin8YUV
   font-size: 40px;
   font-weight:500;
   margin-top: 15px;
-
+  z-index: 100;
 }
 
 #bigArtistName{
   font-size: 30px;
   font-weight:200;
   color: #979797;
+  z-index: 100;
 }
 
 #bigAlbumName{
@@ -180,6 +181,7 @@ airmail://message?mail=alex.yang%40cbsinteractive.com&messageid=CALb61nKARin8YUV
   font-weight: 200;
   margin-top: 10px;
   color: #979797;
+  z-index: 100;
 }
 
 #currentSongInfo{
