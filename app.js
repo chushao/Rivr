@@ -198,6 +198,42 @@ app.get('/getNextSong', function(req, res) {
         }
         iterate(0);
     console.log(returnJson);
+    if (!returnJson) {
+        returnJson = [
+        {
+            "name": "Eyes FAKE",
+            "artist": " Kaskade Mindy Gledhill"
+        },
+        {
+            "name": "Clarity",
+            "artist": " Zedd Foxes"
+        },
+        {
+            "name": "Make It Wit Chu - Edit Version",
+            "artist": " Queens Of The Stone Age"
+        },
+        {
+            "name": "English Love Affair",
+            "artist": " 5 Seconds Of Summer"
+        },
+        {
+            "name": "End Up Here",
+            "artist": " 5 Seconds Of Summer"
+        },
+        {
+            "name": "Sweet Disposition",
+            "artist": " The Temper Trap"
+        },
+        {
+            "name": "Summer - R3hab & Ummet Ozcan Remix",
+            "artist": " Calvin Harris"
+        },
+        {
+            "name": "Summer",
+            "artist": " Calvin Harris"
+        }
+        ];
+    }
     res.json(returnJson);
     }, function(err) {
         console.log('Something went wrong!', err);
