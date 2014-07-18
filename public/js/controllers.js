@@ -26,12 +26,17 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
             $scope.songDuration = data.duration;
             $scope.songArtist = data.artist;
             $scope.songAlbum = data.album;
-            $timeout(tick, 1000);
+            $timeout(tick, 15000);
         });
         $http.get('/artwork').success(function (data) {
             console.log(data);
             document.getElementById("albumCover").src="/artwork";
             $scope.artwork = data;
+        });
+
+        $http.get('/getNextSong').success(function (data) {
+            console.log(data);
+            $scope.upcomingSongs = data;
         });
     })();
 
@@ -95,7 +100,7 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
     $scope.skip = true;
   }
 
-    $scope.playSong = function(){
+  $scope.playSong = function(){
     console.log("playing or muting song");
     var audioElm = document.getElementById('audioPlayer'); audioElm.muted = !audioElm.muted;
   }

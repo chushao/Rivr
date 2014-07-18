@@ -34,7 +34,7 @@
     </div>
       	<h1>This is a boilerplate</h1>
 
-       <div class="row">
+<!--       <div class="row">
 <div id="container"></div>
 <div id="warning1" class="message">
   <h1>
@@ -63,7 +63,7 @@
                   <source src="http://10.16.189.76:8000/stream" autoplay type="audio/ogg">
                   Your browser does not support the audio element.
                 </audio>
-        </div> -->
+        </div>
 
         <div class="row">
           <div class="col-md-2">
@@ -78,6 +78,10 @@
             <br/><strong>Duration:</strong> ((songDuration))
             <br/><strong>Artist:</strong> ((songArtist))
             <br/><strong>Album:</strong> ((songAlbum))
+            <br/><strong>Upcoming Songs:</strong>
+            <ol ng-repeat="song in upcomingSongs">
+                <strong>((song.name))</strong> by ((song.artist))</a>
+            </ol>
         </div>
 
           <div class="col-md-10">
