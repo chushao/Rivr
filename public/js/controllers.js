@@ -88,14 +88,6 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
 
   $scope.searchSongs = function(){
       $scope.blackout = true;
-      if ($scope.query == ""){
-        $scope.songs = [{
-          name: "No results found.  Please try a new search.",
-          artists: [{
-            name: ""
-          }]
-        }];
-      } else {
       $http({method: 'GET', url: 'http://ws.spotify.com/search/1/track.json?q=' + $scope.query}).
       success(function(data, status, headers, config) {
         // this callback will be called asynchronously
@@ -114,7 +106,7 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
         // or server returns response with an error status.
         console.log("error retrieving data from Spotify");
       });
-    }
+ 
   }
 
   $scope.selectSong = function(trackId){
