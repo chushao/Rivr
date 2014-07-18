@@ -26,7 +26,12 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
             $scope.songDuration = data.duration;
             $scope.songArtist = data.artist;
             $scope.songAlbum = data.album;
-            $timeout(tick, 15000);
+            $timeout(tick, 1000);
+        });
+        $http.get('/artwork').success(function (data) {
+            console.log(data);
+            document.getElementById("albumCover").src="/artwork";
+            $scope.artwork = data;
         });
     })();
 

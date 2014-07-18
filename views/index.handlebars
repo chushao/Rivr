@@ -73,10 +73,11 @@
             <button ng-click="skipSong()" type="submit" >Skip Song</button>
             <button ng-click="playSong()" type="submit" >Play/Mute</button>
             <br/>((skipCounter - 1)) Votes to Skip
-            <br/>Name: ((songName))
-            <br/>Duration: ((songDuration))
-            <br/>Artist: ((songArtist))
-            <br/>Album: ((songAlbum))
+            <img id="albumCover" ng-src="/artwork" alt="No Art" />
+            <br/><strong>Name:</strong> ((songName))
+            <br/><strong>Duration:</strong> ((songDuration))
+            <br/><strong>Artist:</strong> ((songArtist))
+            <br/><strong>Album:</strong> ((songAlbum))
         </div>
 
           <div class="col-md-10">
