@@ -1,11 +1,13 @@
 //dependencies for each module used
 var express = require('express');
-var http = require('http');
+var app = express();
+var http = require('http').createServer(app);
 var path = require('path');
 var handlebars = require('express3-handlebars');
 var fs = require('fs');
 var spotify = require('spotify-node-applescript');
 var SpotifyWebApi = require('spotify-web-api-node');
+var io = require('socket.io')(http);
 
 
 var passport = require('passport');
@@ -13,8 +15,6 @@ var SpotifyStrategy = require('passport-spotify').Strategy;
 var dotenv = require('dotenv');
 dotenv.load();
 
-
-var app = express();
 //route files to load
 var index = require('./routes/index');
 
@@ -78,7 +78,7 @@ app.get('/login', index.view);
 app.get('/', index.view);
 //set environment ports and start application
 app.set('port', process.env.PORT || 2014);
-http.createServer(app).listen(app.get('port'), function(){
+http.listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
 
@@ -188,4 +188,84 @@ app.post('/sendTrack', function(req, res) {
         console.log **/
 });
 
+// usernames which are currently connected to the chat
+var usernames = {};
+var numUsers = 0;
+
+io.on('connection', function (socket) {
+  var addedUser = false;
+  console.log("user connected");
+  // when the client emits 'new message', this listens and executes
+  socket.on('new message', function (data) {
+    // we tell the client to execute 'new message'
+    socket.broadcast.emit('new message', {
+      username: socket.username,
+      message: data
+    });
+  });
+
+  socket.on('skip', function (data) {
+    // we tell the client to execute 'new message'
+
+    skipButton++;
+    console.log(skipButton + "--------------");
+    if ((skipButton % 5) == 0) {
+        console.log("HIT");
+        skipButton = 0;
+        spotify.next(function(err) { 
+            if (err) {
+                console.log(err);
+            }
+        });
+    }
+    //res.redirect('/');
+  });
+
+  // when the client emits 'add user', this listens and executes
+  socket.on('add user', function (username) {
+    // we store the username in the socket session for this client
+    socket.username = username;
+    // add the client's username to the global list
+    usernames[username] = username;
+    ++numUsers;
+    addedUser = true;
+    socket.emit('login', {
+      numUsers: numUsers
+    });
+    // echo globally (all clients) that a person has connected
+    socket.broadcast.emit('user joined', {
+      username: socket.username,
+      numUsers: numUsers
+    });
+  });
+
+  // when the client emits 'typing', we broadcast it to others
+  socket.on('typing', function () {
+    socket.broadcast.emit('typing', {
+      username: socket.username
+    });
+  });
+
+  // when the client emits 'stop typing', we broadcast it to others
+  socket.on('stop typing', function () {
+    socket.broadcast.emit('stop typing', {
+      username: socket.username
+    });
+  });
+
+  // when the user disconnects.. perform this
+  socket.on('disconnect', function () {
+    // remove the username from global usernames list
+    if (addedUser) {
+      delete usernames[socket.username];
+      --numUsers;
+
+      // echo globally that this client has left
+      socket.broadcast.emit('user left', {
+        username: socket.username,
+        numUsers: numUsers
+      });
+    }
+  });
+});
 

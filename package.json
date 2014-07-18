@@ -13,7 +13,8 @@
     "passport": "*",
     "passport-spotify": "*",
     "dotenv": "*",
-    "nodemon": "*"
+    "nodemon": "*",
+    "socket.io": "*"
   },
   "engines": {
     "node": "0.10.x"
