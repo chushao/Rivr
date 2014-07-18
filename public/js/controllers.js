@@ -69,4 +69,8 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http) {
     $scope.skip = true;
   }
 
+    $scope.playSong = function(){
+    console.log("playing or muting song");
+    var audioElm = document.getElementById('audioPlayer'); audioElm.muted = !audioElm.muted;
+  }
 });
