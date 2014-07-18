@@ -72,38 +72,26 @@
         <button ng-click="skip=false" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <strong>Don't like this song?</strong> If 5 people vote to skip, the stream will go to the next song.
     </div>
-
-
-        <div class="row">
-          <div class="col-md-2">
-            <!--Sidebar content--> 
-            <br/><strong>Name:</strong> ((songName))
-            <br/><strong>Duration:</strong> ((songDuration))
-            <br/><strong>Artist:</strong> ((songArtist))
-            <br/><strong>Album:</strong> ((songAlbum))
-          </div>
-        </div>
-    <div>
       <audio id ="audioPlayer" autoplay>
           <source src="http://10.16.189.76:8000/stream" autoplay type="audio/ogg">
                   Your browser does not support the audio element.
       </audio>
     </div> <!-- End AudioPlayer and alerts -->
 
-    <div id="main_nav" class="navbar" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                   
-                </a>
-            </div>
-            <!--<div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>--><!--/.nav-collapse -->
+    <div id="fullWidthPlayer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-5">
+            <span id="bigSongName">((songName))</span><br/>
+            <span id="bigArtistName">((songArtist))</span>
+            <br/><strong>Album:</strong> ((songAlbum))
+          </div>
+          <div id="song_visual">
+            <img id="albumCover" ng-src="/artwork" alt="No Art" />
+          </div> 
         </div>
+      </div>
     </div>
 
     <div class="container">
@@ -137,9 +125,7 @@
 
                     <div id="playlist_tabs" class="tab-content">
                         <div id="nowPlaying" class="tab-pane active fade in">
-                           <div id="song_visual">
-                                 <img id="albumCover" ng-src="/artwork" alt="No Art" />
-                             </div> 
+                           
                             <div id="song_bottom_bar">
                                 <a id="pauseButton" ng-click="playSong()">
                                     <span class="glyphicon glyphicon-pause"></span>

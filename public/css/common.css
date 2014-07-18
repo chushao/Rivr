@@ -58,7 +58,8 @@ audio{
 #song_visual{
   height: 300px;
   width: 300px;
-  margin: 0px auto;
+  margin-left: 70%;
+  margin-top: 15px;
 }
 
 ul#playlist_nav {
@@ -149,3 +150,22 @@ ul.songlist li .song_length{
    position: absolute;
     right: 10px;
 }
+
+#fullWidthPlayer{
+  height: 330px;
+  background: #222 url(../img/visualizer.png) bottom no-repeat;
+  margin-bottom: 20px;
+  color: #ddd;
+}
+
+#bigSongName{
+  font-size: 40px;
+  font-weight:500;
+}
+
+#bigArtistName{
+  font-size: 30px;
+  font-weight:200;
+
+}
+
