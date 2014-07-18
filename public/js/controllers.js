@@ -29,14 +29,51 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
             $timeout(tick, 15000);
         });
         $http.get('/artwork').success(function (data) {
-            console.log(data);
+            //console.log(data);
             document.getElementById("albumCover").src="/artwork";
-            $scope.artwork = data;
+            //$scope.artwork = data;
         });
 
         $http.get('/getNextSong').success(function (data) {
             console.log(data);
+            if (data == ""){
+            $scope.upcomingSongs = [
+        {
+            "name": "Eyes FAKE",
+            "artist": " Kaskade Mindy Gledhill"
+        },
+        {
+            "name": "Clarity",
+            "artist": " Zedd Foxes"
+        },
+        {
+            "name": "Make It Wit Chu - Edit Version",
+            "artist": " Queens Of The Stone Age"
+        },
+        {
+            "name": "English Love Affair",
+            "artist": " 5 Seconds Of Summer"
+        },
+        {
+            "name": "End Up Here",
+            "artist": " 5 Seconds Of Summer"
+        },
+        {
+            "name": "Sweet Disposition",
+            "artist": " The Temper Trap"
+        },
+        {
+            "name": "Summer - R3hab & Ummet Ozcan Remix",
+            "artist": " Calvin Harris"
+        },
+        {
+            "name": "Summer",
+            "artist": " Calvin Harris"
+        }
+        ];
+      } else{
             $scope.upcomingSongs = data;
+            }
         });
     })();
 
