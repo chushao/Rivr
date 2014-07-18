@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<title>Boilerplate</title>	
+	<title>Rivr</title>	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
@@ -13,16 +13,27 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->        
+      <link rel="icon" type="image/png" href="img/rivr-icon.png">
       <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+      <link rel="stylesheet" type="text/css" href="css/common.css">
       <link rel="stylesheet" type="text/css" href="css/chat.css">
-      <!--<link rel="stylesheet" type="text/css" href="css/visualizer.css">-->
+         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300italic,700' rel='stylesheet' type='text/css'>
+
 
 </head>
 
-<body ng-app="spotifyApp">
 
-    <div class="container" ng-controller="SongListCtrl">
+<body ng-app="spotifyApp" ng-controller="SongListCtrl">
+        <div class="blackmodal" ng-show="blackout==true">
+            <ul class="songs">
+              <li class="list-format" ng-repeat="song in songs | filter:query">
+                <a class="text-center" ng-click="selectSong(song.href)"><span class = "song-text">((song.name))</span> <span class = "artist-text">by ((song.artists[0].name))</span></a>
+              </li>
+            </ul>
+        </div>
+
+
 
     <div ng-show="added==1" class="alert alert-success alert-dismissible" role="alert">
         <button ng-click="added=false" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -32,48 +43,13 @@
         <button ng-click="skip=false" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <strong>Don't like this song?</strong> If 5 people vote to skip, the stream will go to the next song.
     </div>
-      	<h1>This is a boilerplate</h1>
 
-<!--       <div class="row">
-<div id="container"></div>
-<div id="warning1" class="message">
-  <h1>
-    This experiment requires the
-    <a>{ href:'https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html', target:'_blank' } Web Audio API</a>
-  </h1>
-  <h2>
-    Please try in one of
-    <a>{ href:'http://caniuse.com/#feat=audio-api', target:'_blank' } these browsers</a>
-  </h2>
-</div>
-<div id="warning2" class="message">
-  <h1>
-    Safari users. You may hear audio but see no visuals. This is due to
-    <a>{ href:'http://goo.gl/6WLx1', target:'_blank' } this bug</a>
-    in Safari 6
-  </h1>
-</div>
-<div id="intro" class="message">
-  <h1>Simple music visualiser</h1>
-  <h2>Loading audio&hellip;</h2>
-</div>
-</div> -->
-        <div>
-                <audio id ="audioPlayer" autoplay>
-                  <source src="http://10.16.189.76:8000/stream" autoplay type="audio/ogg">
-                  Your browser does not support the audio element.
-                </audio>
-        </div>
 
         <div class="row">
           <div class="col-md-2">
             <!--Sidebar content-->
-            <input type="text" ng-model="query" placeholder="Search for a Song..."> 
-            <button ng-click="searchSongs()" type="submit" >Search</button>
-            <button ng-click="skipSong();skipFlag=true" ng-disabled="skipFlag" type="submit" >Skip Song</button>
-            <button ng-click="playSong()" type="submit" >Play/Mute</button>
+            <input type="text" ng-focus="searchSongs()" ng-change="searchSongs()" ng-model="query" placeholder="Search for a Song..."> 
             <br/>((skipCounter - 1)) Votes to Skip
-            <img id="albumCover" ng-src="/artwork" alt="No Art" />
             <br/><strong>Name:</strong> ((songName))
             <br/><strong>Duration:</strong> ((songDuration))
             <br/><strong>Artist:</strong> ((songArtist))
@@ -82,46 +58,142 @@
             <li ng-repeat="song in upcomingSongs">
                 <strong>((song.name))</strong> by ((song.artist))</a>
             </li>
-        </div>
-
-          <div class="col-md-10">
-            <!--Body content-->
-
-            <ul class="songs">
-              <li ng-repeat="song in songs | filter:query">
-                <a ng-click="selectSong(song.href)"><strong>((song.name))</strong> by ((song.artists[0].name))</a>
-              </li>
-            </ul>
-
           </div>
         </div>
+    <div>
+      <audio id ="audioPlayer" autoplay>
+          <source src="http://10.16.189.76:8000/stream" autoplay type="audio/ogg">
+                  Your browser does not support the audio element.
+      </audio>
+    </div> <!-- End AudioPlayer and alerts -->
 
-          <ul class="pages">
-            <li class="chat page">
-              <div class="chatArea">
-                <ul class="messages"></ul>
+    <div id="main_nav" class="navbar" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img id="logo" src="img/rivr-logo.png"/>
+                </a>
+            </div>
+            <!--<div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>--><!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <div class="container" ng-controller="SongListCtrl">
+       <div id="row1" class="row">
+            <div class="left col-md-7"> 
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="input-group">
+                          <div class="input-group-btn">
+                            <input type="text" ng-model="query" class="song_search form-control" placeholder="Find a song">
+                            <button id="findSongs" ng-click="searchSongs()" type="submit" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Get music</button>
+                            <ul id="searchResults" class="dropdown-menu" role="menu">
+                              <li ng-repeat="song in songs | filter:query">
+                                <a class="songLink" ng-click="selectSong(song.href)">
+                                    <span class="song_name">((song.name))</span> 
+                                    <span class="artist_name">((song.artists[0].name))</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </div><!-- /btn-group -->
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+
+                <!--chat-->
+                <div id="chat">
+                    <ul class="pages">
+                        <li class="chat page">
+                            <div class="chatArea">
+                                <ul class="messages"></ul>
+                            </div>
+                            <input class="inputMessage" placeholder="Type here..."/>
+                        </li>
+                        <li class="login page">
+                            <div class="form">
+                                <h3 class="title">What's your name?</h3>
+                                <input class="usernameInput" type="text" maxlength="14" />
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div> <!--end left column-->
+
+
+            <div class="right col-md-5" >
+                <div id="main_playlist_wrapper" class="playlist_wrapper well well-lg">
+                    <ul id="playlist_nav" class="nav nav-tabs" role="tablist">
+                        <li id="nowPlayingTab" class="active"><a href="#nowPlaying" data-toggle="tab">Now Playing</a></li>
+                        <li id="recentlyPlayedTab"><a href="#recentlyPlayed" data-toggle="tab">Recently Played</a></li>
+                    </ul>
+
+                    <div id="playlist_tabs" class="tab-content">
+                        <div id="nowPlaying" class="tab-pane active fade in">
+                            <div id="song_visual">
+                                <img id="albumCover" ng-src="/artwork" alt="No Art" />
+                            </div>
+                            <div id="song_bottom_bar">
+                                <a id="pauseButton" ng-click="playSong()">
+                                    <span class="glyphicon glyphicon-pause"></span>
+                                </a>
+                            <div id="button_skip">
+                                <button ng-click="skipSong();skipFlag=true" ng-disabled="skipFlag" class="btn btn-default" >Skip Song</button>
+                                <br/>((skipCounter - 1)) Votes to Skip
+                            </div>
+                            </div>
+                            <div id="playlist_wrapper">
+                                <ul id="main_playlist" class="songlist">
+                                  <li ng-repeat="song in songs | filter:query">
+                                    <a ng-click="selectSong(song.href)">
+                                        <span class="song_name">((song.name))</span>
+                                        <span class="artist_name"> ((song.artists[0].name))</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                            <button id="add_song" class="btn btn-default" data-toggle="modal" data-target="#addSongModal"><span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
+                        <!--<div id="recentlyPlayed" class="tab-pane fade">
+                            <ul id="recently_played" class="songlist">
+                                <li>
+                                    <span class="song_name">I Am The Best</span> 
+                                    <span class="artist_name">2NE1</span>
+                                    <span class="song_length">4:24</span>
+                                </li>
+                                <li>
+                                    <span class="song_name">Clarity</span> 
+                                    <span class="artist_name">Zedd</span>
+                                    <span class="song_length">4:36</span>
+                                </li>
+                            </ul>
+                        </div>-->
+                    </div> <!--tab-content-->
+                </div> <!--playlist wrapper-->
+            </div> <!--end right column-->
+        </div> <!--end row 1-->
+
               </div>
-              <input class="inputMessage" placeholder="Type here..."/>
-            </li>
-            <li class="login page">
-              <div class="form">
-                <h3 class="title">What's your nickname?</h3>
-                <input class="usernameInput" type="text" maxlength="14" />
-              </div>
-            </li>
-          </ul>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    </div> <!--end container-->
 
 
     </div>
     <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
-    <!--<script src="js/visualizer.js"></script>-->
     <script src='js/sketch.min.js'></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
     <script src="js/underscore.js"></script>
     <script src="js/chat.js"></script>
-        <script src="js/controllers.js"></script>
+    <script src="js/controllers.js"></script>
 
 </body>
 </html>

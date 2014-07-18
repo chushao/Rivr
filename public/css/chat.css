@@ -148,3 +148,32 @@ ul {
   right: 0;
   width: 100%;
 }
+
+
+.song-text{
+  color:white;
+}
+
+.artist-text{
+  color:grey;
+}
+
+.list-format{
+  width: 100%;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 5%;
+}
+
+.blackmodal{
+     position:absolute;
+    top:50px;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:rgba(0, 0, 0, 0.85);
+    background: url(data:;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuNUmK/OAAAAATSURBVBhXY2RgYNgHxGAAYuwDAA78AjwwRoQYAAAAAElFTkSuQmCC) repeat scroll transparent\9; /* ie fallback png background image */
+    z-index:9999;
+    color:white;
+}
