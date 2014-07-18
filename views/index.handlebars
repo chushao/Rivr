@@ -73,10 +73,13 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3"></div>
-          <div class="col-md-5">
+          <div id="currentSongInfo" class="col-md-5">
             <span id="bigSongName">((songName))</span><br/>
             <span id="bigArtistName">((songArtist))</span>
             <br/><strong>Album:</strong> ((songAlbum))
+            <br/><br/>
+            <button ng-click="skipSong()" type="button" ng-disabled="skipFlag==true" class="btn btn-default">Skip Song</button>
+            <br/>((skipCounter - 1)) Votes to Skip
           </div>
           <div id="song_visual">
             <img id="albumCover" ng-src="/artwork" alt="No Art" />
@@ -110,17 +113,13 @@
 
               <div class="right col-md-5" >
                 <div id="main_playlist_wrapper" class="playlist_wrapper well well-lg">
-                    <div id="playlist_tabs" class="tab-content">
-                        <div id="nowPlaying" class="tab-pane active fade in">
-                           
+                    <div id="playlist_tabs">
+                        <div id="nowPlaying" >
+                          <h3>Upcoming Songs</h3> 
                             <div id="song_bottom_bar">
                                 <a id="pauseButton" ng-click="playSong()">
                                     <span class="glyphicon glyphicon-pause"></span>
                                 </a>
-                            <div id="button_skip">
-                                <button ng-click="skipSong()" type="button" ng-disabled="skipFlag==true" class="btn btn-default">Skip Song</button>
-                                <br/>((skipCounter - 1)) Votes to Skip
-                            </div>
                             </div>
                         <div id="playlist_wrapper">
                             <ul id="main_playlist" class="songlist">

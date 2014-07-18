@@ -36,7 +36,7 @@ audio{
 }
 
 #playlist_tabs{
-  height: 800px;
+  height: 450px;
 }
 
 #main_playlist_wrapper{
@@ -97,9 +97,10 @@ ul.songlist li .song_length{
 }
 
 .playlist_wrapper h3{
-  margin-top: 5px;
+  margin-top: 0px;
   padding-bottom: 5px;
   border-bottom: 1px solid #555;
+  color:#555;
 }
 
 #add_song{
@@ -121,7 +122,7 @@ ul.songlist li .song_length{
 
 #playlist_wrapper{
   margin-top: 30px;
-  height: 450px;
+  height: 400px;
   overflow-y: scroll;
 }
 
@@ -162,12 +163,17 @@ ul.songlist li .song_length{
 #bigSongName{
   font-size: 40px;
   font-weight:500;
+  margin-top: 15px;
 }
 
 #bigArtistName{
   font-size: 30px;
   font-weight:200;
 
+}
+
+#currentSongInfo{
+  padding-top: 15px;
 }
 
 .animate-enter {
