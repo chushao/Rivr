@@ -28,7 +28,24 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http) {
 
   $scope.selectSong = function(trackId){
     console.log("track ID recieved: " + trackId);
-    
+    var trackData = {"id": trackId};
+    // $http({
+    //     method: 'POST',
+    //     url: '/sendTrack',
+    //     data: trackId,
+    //     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    // });
+    // 
+    // 
+    $http({method: 'POST',
+            url: '/sendTrack',
+            data: trackData,
+            headers: {'contentType': 'application/json'}
+        }).success(function() {
+            $scope.sucess = "Success";
+        }).error(function() {
+            $scope.errorMessage = "Failure";
+        });
   }
 
 

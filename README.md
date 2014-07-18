@@ -1,5 +1,3 @@
-Boilerplate
+Hackity hack hack
 ===========
-
-Boilerplate for COGS 121. This should provide a basic set up for node.js. 
-Make sure you run npm install before using
+Hack hack hack hack spotify music streamer hack hack hack

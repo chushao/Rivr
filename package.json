@@ -9,9 +9,11 @@
     "express": "3.x",
     "express3-handlebars": "*",
     "spotify-node-applescript": "*",
-    "passport-facebook": "*",
-    "passport-twitter": "*",
-    "dotenv": "*"
+    "spotify-web-api-node": "*",
+    "passport": "*",
+    "passport-spotify": "*",
+    "dotenv": "*",
+    "nodemon": "*"
   },
   "engines": {
     "node": "0.10.x"
