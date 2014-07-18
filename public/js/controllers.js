@@ -16,6 +16,8 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
   $scope.playButton = true;
   $scope.songName = "Not playing";
   $scope.songDuration = "N/A";
+  $scope.songDurationMinutes = "N/A";
+  $scope.songDurationSeconds = "N/A";
   $scope.songArtist = "N/A";
   $scope.songAlbum = "N/A";
 
@@ -28,6 +30,8 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
 
             $scope.songName = data.name;
             $scope.songDuration = data.duration;
+            $scope.songDurationMinutes = Math.floor(data.duration/60);
+            $scope.songDurationSeconds = data.duration%60;
             $scope.songArtist = data.artist;
             $scope.songAlbum = data.album;
             $timeout(tick, 1000 * 15);
