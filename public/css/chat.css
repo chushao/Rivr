@@ -99,7 +99,7 @@ ul {
 }
 
 .log {
-  color: gray;
+  color: #222;
   font-size: 70%;
   margin: 5px;
   text-align: center;
@@ -121,7 +121,7 @@ ul {
 }
 
 .message.typing .messageBody {
-  color: gray;
+  color: #222;
 }
 
 .username {
@@ -140,6 +140,7 @@ ul {
 .inputMessage {
   border: 2px solid white;
   border-radius: 0px 0px 6px 6px;
+  background: #7C7F7C
   bottom: 0;
   height: 60px;
   left: 0;
@@ -148,6 +149,7 @@ ul {
   position: absolute;
   right: 0;
   width: 100%;
+  color: #222;
 }
 
 

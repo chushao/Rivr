@@ -20,6 +20,10 @@ audio{
   display:none;
 }
 
+#closeSearch{
+    background-color: red;
+}
+
 .well{
   background-image: -webkit-linear-gradient(top, #e8e8e8 0%, #f5f5f5 100%);
   background-image: linear-gradient(to bottom, #e8e8e8 0%, #f5f5f5 100%);

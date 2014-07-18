@@ -58,7 +58,7 @@
             </div>
 
             <div class="input-group-btn" ng-show="blackout==true">
-                <button class="btn btn-default" ng-click="blackout=false" type="submit"><i class="glyphicon glyphicon-remove"></i></button>
+                <button id="closeSearch" class="btn btn-default" ng-click="blackout=false" type="submit"><i class="glyphicon glyphicon-remove"></i></button>
             </div>
 
             <input type="text" class="form-control search-form" ng-focus="searchSongs()"   ng-change="searchSongs()" ng-model="query" placeholder="Search for a Song..."> 
