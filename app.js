@@ -21,6 +21,7 @@ var index = require('./routes/index');
 //global variable, don't judge
 var skipButton = 0;
 var gbaccesstoken = "";
+var nowPlaying = "";
 
 //passport, spotify login
 //serialize and deserialize (for persistent sessions)
@@ -82,7 +83,7 @@ http.listen(app.get('port'), function(){
 });
 
 app.get('/auth/spotify',
-    passport.authenticate('spotify', {scope: ['playlist-modify', 'user-read-private', 'user-read-email', 'playlist-modify-private']}),
+    passport.authenticate('spotify', {scope: ['playlist-modify', 'user-read-private', 'user-read-email', 'playlist-modify-private', 'playlist-read-private']}),
     function(req, res) {
         //YOU SHOULD NEVER GET HERE
         console.log("What the fuck?");
@@ -104,7 +105,7 @@ app.get('/metadata', function(req, res) {
     if (err) {
         return console.error(err);
     }
-        console.log(track);
+        nowPlaying = track.id;
         res.json(track);
     });
 });
@@ -163,28 +164,54 @@ function copyFile(source, target, callback) {
     }
 }
 
+app.get('/getNextSong', function(req, res) {
+     var returnJson = [];
+    spotifyApi.getPlaylist('1235132793', '0ImTPrxa2wyQ0OFTsievA3')
+        .then(function(data) {
+        var after = false;
+        var playlistArr = data.tracks.items;
+       
+        function iterate(i) {
+            if (i < playlistArr.length) {
+                if (playlistArr[i].track.uri == nowPlaying) {
+                    after = true;
+                }
+                if (after) {
+                    var tempName = playlistArr[i].track.name;
+                    var tempArtist = "";
+                    function itArtist(j) {
+                        if (j < playlistArr[i].track.artists.length) {
+                            tempArtist = tempArtist + " " + playlistArr[i].track.artists[j].name;
+                            itArtist(j+1);
+                        }
+                    }
+                    itArtist(0);
+                    returnJson.push({
+                        "name" : tempName,
+                        "artist" : tempArtist
+                    });
+                
+
+                }
+                iterate(i+1);
+            }
+        }
+        iterate(0);
+    console.log(returnJson);
+    res.json(returnJson);
+    }, function(err) {
+        console.log('Something went wrong!', err);
+    });
+});
+
 app.post('/sendTrack', function(req, res) {
     console.log("track id is: " + req.body.id);
-    var playlistPath =  '/v1/users/1235132793/playlists/0ImTPrxa2wyQ0OFTsievA3/tracks?uris=' + req.body.id;
-    console.log(playlistPath);
     spotifyApi.addTracksToPlaylist('1235132793', '0ImTPrxa2wyQ0OFTsievA3', [req.body.id])
         .then(function(data) {
             console.log(data);
         }, function(err) {
             console.log( "ERR: ", err);
     });
-/**    var options = {
-        host: 'api.spotify.com',
-        port: 80,
-        path: playlistPath,
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            '
-    };
-
-    var req = http.request(options, function(res) {
-        console.log **/
 });
 
 // usernames which are currently connected to the chat
