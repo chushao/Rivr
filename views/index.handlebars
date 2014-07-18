@@ -63,6 +63,10 @@
 
             <input type="text"  class="form-control search-form" ng-focus="searchSongs()"   ng-change="searchSongs()" ng-model="query" placeholder="Search for a Song..."> 
         </div>
+      </form>
+       <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Last.fm</a></li>
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -86,8 +90,9 @@
         <div class="row">
           <div id="pauseButton" class="col-md-3">
             <a ng-click="playSong()">
-              <img class="playButton" ng-show="playButton" src="img/pause-btn.png" />
-              <img class="playButton" ng-hide="playButton" src="img/play-btn.png" />
+              <img class="playButton" ng-show="playButton" src="img/glowing-pause-btn.png" />
+              <!-- <img class="playButton" ng-hide="playButton" src="img/play-btn.png" /> -->
+              <img class="playButton" ng-hide="playButton" src="img/glowing-play-btn-2.png" />
             </a>
           </div>
           <div id="currentSongInfo" class="col-md-5">
