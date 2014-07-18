@@ -7,6 +7,7 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http) {
   //or just grab the json with an ajax call
 
   $scope.query = "chu";
+  $scope.skipCounter = 1;
 
   $scope.searchSongs = function(){
     $http({method: 'GET', url: 'http://ws.spotify.com/search/1/track.json?q=' + $scope.query}).
@@ -50,6 +51,12 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http) {
 
   $scope.skipSong = function(){
     console.log("skipping song");
+    if (($scope.skipCounter % 5) == 0) {
+        console.log("HIT");
+        $scope.skipCounter = 1;
+    } else {
+      $scope.skipCounter++;
+    }
     var socket = io();
     socket.emit('skip');
   }
