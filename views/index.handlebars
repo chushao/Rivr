@@ -49,7 +49,6 @@
           <div class="col-md-2">
             <!--Sidebar content-->
             <input type="text" ng-focus="searchSongs()" ng-change="searchSongs()" ng-model="query" placeholder="Search for a Song..."> 
-            <br/>((skipCounter - 1)) Votes to Skip
             <br/><strong>Name:</strong> ((songName))
             <br/><strong>Duration:</strong> ((songDuration))
             <br/><strong>Artist:</strong> ((songArtist))
@@ -106,14 +105,13 @@
                 <div id="main_playlist_wrapper" class="playlist_wrapper well well-lg">
                     <ul id="playlist_nav" class="nav nav-tabs" role="tablist">
                         <li id="nowPlayingTab" class="active"><a href="#nowPlaying" data-toggle="tab">Now Playing</a></li>
-                        <li id="recentlyPlayedTab"><a href="#recentlyPlayed" data-toggle="tab">Recently Played</a></li>
                     </ul>
 
                     <div id="playlist_tabs" class="tab-content">
                         <div id="nowPlaying" class="tab-pane active fade in">
-                            <div id="song_visual">
-                                <img src="/artwork"/>
-                            </div>
+                           <div id="song_visual">
+                                 <img id="albumCover" ng-src="/artwork" alt="No Art" />
+                             </div> 
                             <div id="song_bottom_bar">
                                 <a id="pauseButton" ng-click="playSong()">
                                     <span class="glyphicon glyphicon-pause"></span>
@@ -125,14 +123,9 @@
                             </div>
                         <div id="playlist_wrapper">
                             <ul id="main_playlist" class="songlist">
-                                <li>
-                                    <span class="song_name">((songName))</span> 
-                                    <span class="artist_name">((songArtist))</span>
-                                    <!--<span class="song_length">((songDuration))</span>-->
-                                </li>
                                 <li ng-repeat="song in upcomingSongs">
-                                    <span class="song_name">((song.name))</span> 
-                                    <span class="artist_name">((song.artist))</span>
+                                     <span class="song_name">((song.name))</span>
+                                     <span class="artist_name">((song.artist))</span>
                                 </li>
                             </ul>
                         </div>
@@ -142,7 +135,11 @@
                 </div> <!--playlist wrapper-->
             </div> <!--end right column-->
         </div> <!--end row 1-->
-
+            <ul class="songs">
+              <li ng-repeat="song in songs | filter:query">
+                <a ng-click="selectSong(song.href)"><strong>((song.name))</strong> by ((song.artists[0].name))</a>
+              </li>
+            </ul>
               </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
