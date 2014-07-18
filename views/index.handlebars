@@ -20,9 +20,16 @@
 
 </head>
 
-<body ng-app="spotifyApp">
+<body ng-app="spotifyApp" ng-controller="SongListCtrl">
+        <div class="blackmodal" ng-show="blackout==true">
+            <ul class="songs">
+              <li class="list-format" ng-repeat="song in songs | filter:query">
+                <a class="text-center" ng-click="selectSong(song.href)"><span class = "song-text">((song.name))</span> <span class = "artist-text">by ((song.artists[0].name))</span></a>
+              </li>
+            </ul>
+        </div>
 
-    <div class="container" ng-controller="SongListCtrl">
+    <div class="container">
 
     <div ng-show="added==1" class="alert alert-success alert-dismissible" role="alert">
         <button ng-click="added=false" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -32,7 +39,6 @@
         <button ng-click="skip=false" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <strong>Don't like this song?</strong> If 5 people vote to skip, the stream will go to the next song.
     </div>
-      	<h1>This is a boilerplate</h1>
 
 <!--       <div class="row">
 <div id="container"></div>
@@ -68,8 +74,7 @@
         <div class="row">
           <div class="col-md-2">
             <!--Sidebar content-->
-            <input type="text" ng-model="query" placeholder="Search for a Song..."> 
-            <button ng-click="searchSongs()" type="submit" >Search</button>
+            <input type="text" ng-focus="searchSongs()" ng-model="query" ng-change="searchSongs()" placeholder="Search for a Song..."> 
             <button ng-click="skipSong();skipFlag=true" ng-disabled="skipFlag" type="submit" >Skip Song</button>
             <button ng-click="playSong()" type="submit" >Play/Mute</button>
             <br/>((skipCounter - 1)) Votes to Skip
@@ -84,14 +89,10 @@
             </li>
         </div>
 
+
+
           <div class="col-md-10">
             <!--Body content-->
-
-            <ul class="songs">
-              <li ng-repeat="song in songs | filter:query">
-                <a ng-click="selectSong(song.href)"><strong>((song.name))</strong> by ((song.artists[0].name))</a>
-              </li>
-            </ul>
 
           </div>
         </div>

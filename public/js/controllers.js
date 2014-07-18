@@ -11,6 +11,7 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
   $scope.added = 0;
   $scope.skip = false;
   $scope.skipFlag = false;
+  $scope.blackout = false;
 
   $scope.songName = "Not playing";
   $scope.songDuration = "N/A";
@@ -86,6 +87,8 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
     })();
 
   $scope.searchSongs = function(){
+    $scope.blackout = true;
+
     $http({method: 'GET', url: 'http://ws.spotify.com/search/1/track.json?q=' + $scope.query}).
     success(function(data, status, headers, config) {
       // this callback will be called asynchronously
@@ -130,6 +133,7 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
     $scope.query = "";
     $scope.songs = [];
     $scope.artists = [];
+    $scope.blackout = false;
   }
 
   $scope.skipSong = function(){
