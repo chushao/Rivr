@@ -1,3 +1,5 @@
-Hackity hack hack
+Rivr - Spotify Playlist Audio Broadcast
 ===========
-Hack hack hack hack spotify music streamer hack hack hack
+Built in 24 Hours for Hackday 2014 at CBS Interactive.
+Please excuse the code quality....
+
