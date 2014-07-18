@@ -1,4 +1,4 @@
-var spotifyApp = angular.module('spotifyApp', []);
+var spotifyApp = angular.module('spotifyApp', ['ngAnimate']);
 spotifyApp.config(function($interpolateProvider) { $interpolateProvider.startSymbol('(('); $interpolateProvider.endSymbol('))'); });
 
 spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {

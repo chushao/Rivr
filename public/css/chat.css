@@ -161,13 +161,18 @@ ul {
 .list-format{
   width: 100%;
   font-size: 20px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-left: 5%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 5%;
+}
+
+li, ul{
+  margin-left: 0px ;
+  padding-left: 0px;
 }
 
 .blackmodal{
-     position:absolute;
+    position:absolute;
     top:50px;
     left:0;
     right:0;
