@@ -1,12 +1,10 @@
 //dependencies for each module used
 var express = require('express');
-var app = require('express')();
-var http = require('http').Server(app);
+var http = require('http');
 var path = require('path');
 var handlebars = require('express3-handlebars');
 var fs = require('fs');
 var spotify = require('spotify-node-applescript');
-var chatServer = require('./chatServer')(http);
 
 
 var passport = require('passport');
@@ -55,9 +53,8 @@ passport.use(new SpotifyStrategy({
 
 
 //Configures the Template engine
-app.set('port', process.env.PORT || 2014);
-app.use(express.methodOverride());
 app.engine('handlebars', handlebars());
+app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.bodyParser());
@@ -69,8 +66,11 @@ app.use(passport.session());
 app.get('/login', index.view);
 //routes
 app.get('/', index.view);
-
-
+//set environment ports and start application
+app.set('port', process.env.PORT || 2014);
+http.createServer(app).listen(app.get('port'), function(){
+	console.log('Express server listening on port ' + app.get('port'));
+});
 
 app.get('/auth/spotify',
     passport.authenticate('spotify', {scope: 'user-read-email'}),
@@ -159,9 +159,4 @@ app.post('/sendTrack', ensureAuthenticated, function(req, res) {
      
 });
 
-//set environment ports and start application
-
-http.listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
 

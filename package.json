@@ -6,14 +6,13 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "~3.4.8",
+    "express": "3.x",
     "express3-handlebars": "*",
     "spotify-node-applescript": "*",
     "passport": "*",
     "passport-spotify": "*",
     "dotenv": "*",
-    "nodemon": "*",
-    "socket.io": "*"
+    "nodemon": "*"
   },
   "engines": {
     "node": "0.10.x"
