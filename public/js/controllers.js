@@ -1,4 +1,4 @@
-var spotifyApp = angular.module('spotifyApp', ['ngAnimate']);
+var spotifyApp = angular.module('spotifyApp', ['ngAnimate', 'ui.keypress']);
 spotifyApp.config(function($interpolateProvider) { $interpolateProvider.startSymbol('(('); $interpolateProvider.endSymbol('))'); });
 
 spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
@@ -18,6 +18,8 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
   $scope.songDuration = "N/A";
   $scope.songArtist = "N/A";
   $scope.songAlbum = "N/A";
+
+
 
     (function tick() {
         $http.get('/metadata').success(function (data) {
