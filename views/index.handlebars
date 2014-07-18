@@ -78,23 +78,20 @@
                   Your browser does not support the audio element.
       </audio>
     </div> <!-- End AudioPlayer and alerts -->
-
     <div id="fullWidthPlayer">
       <div class="container">
         <div class="row">
           <div id="pauseButton" class="col-md-3">
             <a ng-click="playSong()">
-              <img src="img/pause-btn.png" />
-              <img src="img/play-btn.png" />
+              <img class="playButton" ng-show="playButton" src="img/pause-btn.png" />
+              <img class="playButton" ng-hide="playButton" src="img/play-btn.png" />
             </a>
           </div>
           <div id="currentSongInfo" class="col-md-5">
-            <span id="bigSongName">((songName))</span><br/>
-            <span id="bigArtistName">((songArtist))</span>
-            <br/><strong>Album:</strong> ((songAlbum))
-            <br/><br/>
-            <button ng-click="skipSong()" type="button" ng-disabled="skipFlag==true" class="btn btn-default">Skip Song</button>
-            <br/>((skipCounter - 1)) Votes to Skip
+            <div id="bigSongName">((songName))</div>
+            <div id="bigArtistName">((songArtist))</div>
+            <div id="bigAlbumName">((songAlbum))</div>
+
           </div>
           <div id="song_visual">
             <img id="albumCover" ng-src="/artwork" alt="No Art" />
@@ -117,7 +114,7 @@
                         </li>
                         <li class="login page">
                             <div class="form">
-                                <h3 class="title">What's your name?</h3>
+                                <h3 class="title">Enter Nickname: </h3>
                                 <input class="usernameInput" type="text" maxlength="14" />
                             </div>
                         </li>
@@ -129,13 +126,9 @@
               <div class="right col-md-5" >
                 <div id="main_playlist_wrapper" class="playlist_wrapper well well-lg">
                     <div id="playlist_tabs">
-                        <div id="nowPlaying" >
-                          <h3>Upcoming Songs</h3> 
-                            <div id="song_bottom_bar">
-                                <a id="pauseButton" ng-click="playSong()">
-                                    <span class="glyphicon glyphicon-pause"></span>
-                                </a>
-                            </div>
+                        <div id="nowPlaying" class="h3">
+                          Upcoming Songs
+                          <button ng-click="skipSong()" type="button" ng-disabled="skipFlag==true" class="btn btn-default">Skip Current</button>
                         <div id="playlist_wrapper">
                             <ul id="main_playlist" class="songlist">
                                 <li ng-repeat="song in upcomingSongs">

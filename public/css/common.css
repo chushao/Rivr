@@ -80,7 +80,7 @@ ul.songlist{
   padding-left: 0px;
 }
 ul.songlist li{
-  padding: 20px 0px;
+  padding: 15px 0px;
   border-bottom: 1px solid #ccc;
 }
 ul.songlist li .song_length{
@@ -96,7 +96,7 @@ ul.songlist li .song_length{
   color: #666;
 }
 
-.playlist_wrapper h3{
+.playlist_wrapper .h3{
   margin-top: 0px;
   padding-bottom: 5px;
   border-bottom: 1px solid #555;
@@ -121,7 +121,7 @@ ul.songlist li .song_length{
 }
 
 #playlist_wrapper{
-  margin-top: 30px;
+  margin-top: 0px;
   height: 400px;
   overflow-y: scroll;
 }
@@ -164,16 +164,25 @@ ul.songlist li .song_length{
   font-size: 40px;
   font-weight:500;
   margin-top: 15px;
+
 }
 
 #bigArtistName{
   font-size: 30px;
   font-weight:200;
+  color: #979797;
+}
 
+#bigAlbumName{
+  font-style:italic;
+  font-size: 16px;
+  font-weight: 200;
+  margin-top: 10px;
+  color: #979797;
 }
 
 #currentSongInfo{
-  padding-top: 15px;
+  padding-top: 39px;
 }
 
 #pauseButton{
@@ -211,4 +220,9 @@ margin-left: auto;
 margin-right: auto;
 z-index: 100;
 text-align: center;
+}
+
+.playButton{
+  margin-left: 80px;
+  margin-top:10px;
 }

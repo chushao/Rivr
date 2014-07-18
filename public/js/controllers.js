@@ -13,6 +13,7 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
   $scope.skipFlag = false;
   $scope.blackout = false;
 
+  $scope.playButton = true;
   $scope.songName = "Not playing";
   $scope.songDuration = "N/A";
   $scope.songArtist = "N/A";
@@ -145,6 +146,7 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
 
   $scope.playSong = function(){
     console.log("playing or muting song");
+    $scope.playButton = !$scope.playButton;
     var audioElm = document.getElementById('audioPlayer'); audioElm.muted = !audioElm.muted;
   }
 });
