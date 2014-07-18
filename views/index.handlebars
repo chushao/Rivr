@@ -18,7 +18,7 @@
       <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css"> -->
       <link rel="stylesheet" type="text/css" href="css/common.css">
       <link rel="stylesheet" type="text/css" href="css/chat.css">
-         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300italic,700' rel='stylesheet' type='text/css'>
+         <link href='http://fonts.googleapis.com/css?family=Roboto:400,200,300italic,700' rel='stylesheet' type='text/css'>
 
 
 </head>
@@ -52,13 +52,16 @@
 
       <form class="navbar-form navbar-left" role="search">
         <div class="input-group">
-            <input type="text" class="form-control" ng-focus="searchSongs()"   ng-change="searchSongs()" ng-model="query" placeholder="Search for a Song..."> 
+ 
             <div class="input-group-btn" ng-show="blackout==false">
                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
             </div>
+
             <div class="input-group-btn" ng-show="blackout==true">
                 <button class="btn btn-default" ng-click="blackout=false" type="submit"><i class="glyphicon glyphicon-remove"></i></button>
             </div>
+
+            <input type="text" class="form-control search-form" ng-focus="searchSongs()"   ng-change="searchSongs()" ng-model="query" placeholder="Search for a Song..."> 
         </div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -128,7 +131,8 @@
                     <div id="playlist_tabs">
                         <div id="nowPlaying" class="h3">
                           Upcoming Songs
-                          <button ng-click="skipSong()" type="button" ng-disabled="skipFlag==true" class="btn btn-default">Skip Current</button>
+                          <button ng-click="skipSong()" type="button" ng-disabled="skipFlag==true" class="btn btn-default pull-right">Skip Current</button>
+                          </div>
                         <div id="playlist_wrapper">
                             <ul id="main_playlist" class="songlist">
                                 <li ng-repeat="song in upcomingSongs">

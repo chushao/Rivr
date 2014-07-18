@@ -134,11 +134,11 @@ ul {
 
 /* Input */
 .inputMessage:hover,.inputMessage:focus{
-  border: 2px solid #3DE4CD;
+  border: 2px solid white;
 }
 
 .inputMessage {
-  border: 2px solid #979B9B;
+  border: 2px solid white;
   border-radius: 0px 0px 6px 6px;
   bottom: 0;
   height: 60px;
@@ -152,11 +152,15 @@ ul {
 
 
 .song-text{
-  color:white;
+  color:#ddd;
+  font-weight: 500;
 }
 
 .artist-text{
-  color:grey;
+  color:#525252;
+  font-weight: 300;
+margin-left: 8px;
+font-style: italic;
 }
 
 .list-format{

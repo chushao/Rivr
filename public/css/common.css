@@ -8,7 +8,7 @@ html {
 body {
   margin: 0px !important;
   padding: 0px !important;
-  /*font-family: 'Roboto', sans-serif;*/
+  font-family: 'Roboto', sans-serif;
   background-color: #373B44;
 }
 
@@ -91,9 +91,9 @@ ul.songlist li .song_length{
 .song_name{
   font-weight: bold;
   margin-right: 5px;
+  color: #666;
 }
 .artist_name{
-  color: #666;
 }
 
 .playlist_wrapper .h3{
@@ -110,7 +110,8 @@ ul.songlist li .song_length{
 .songLink{
   cursor: pointer;
 }
-
+Tune in to Watch the Hack Day Presentations at 10:00am PT
+airmail://message?mail=alex.yang%40cbsinteractive.com&messageid=CALb61nKARin8YUVByUjkDNU9Mp3B4BXf0UmrQ%3Dms1VK1LXuv8Q%40mail.gmail.com
 #pauseButton span{
   font-size: 20px;
 }
@@ -155,7 +156,7 @@ ul.songlist li .song_length{
 
 #fullWidthPlayer{
   height: 330px;
-  background: #222 url(../img/visualizer.png) bottom no-repeat;
+  background: #222 url(../img/orange-bar.png) bottom no-repeat;
   margin-bottom: 20px;
   color: #ddd;
 }
@@ -208,7 +209,7 @@ ul.songlist li .song_length{
 }
 
 .list-format:hover{
-  background-color: red;
+  background-color: #FF530D;
 }
 
 .alert-style{
@@ -225,4 +226,8 @@ text-align: center;
 .playButton{
   margin-left: 80px;
   margin-top:10px;
+}
+
+.search-form{
+  width: 300% !important;
 }
