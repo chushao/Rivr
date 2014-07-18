@@ -16,18 +16,41 @@
       <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
       <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
       <link rel="stylesheet" type="text/css" href="css/chat.css">
+      <link rel="stylesheet" type="text/css" href="css/visualizer.css">
+
 </head>
 
 <body ng-app="spotifyApp">
     <div class="container" ng-controller="SongListCtrl">
       	<h1>This is a boilerplate</h1>
-        
-        <div>
+<div id="container"></div>
+<div id="warning1" class="message">
+  <h1>
+    This experiment requires the
+    <a>{ href:'https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html', target:'_blank' } Web Audio API</a>
+  </h1>
+  <h2>
+    Please try in one of
+    <a>{ href:'http://caniuse.com/#feat=audio-api', target:'_blank' } these browsers</a>
+  </h2>
+</div>
+<div id="warning2" class="message">
+  <h1>
+    Safari users. You may hear audio but see no visuals. This is due to
+    <a>{ href:'http://goo.gl/6WLx1', target:'_blank' } this bug</a>
+    in Safari 6
+  </h1>
+</div>
+<div id="intro" class="message">
+  <h1>Simple music visualiser</h1>
+  <h2>Loading audio&hellip;</h2>
+</div>
+        <!--<div>
                 <audio controls>
                   <source src="http://10.16.189.76:8000/stream" autoplay type="audio/ogg">
                   Your browser does not support the audio element.
                 </audio>
-        </div>
+        </div> -->
 
         <div class="row">
           <div class="col-md-2">
@@ -69,6 +92,8 @@
     <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src='http://soulwire.github.io/sketch.js/js/sketch.min.js'></script> 
+    <script src="js/visualizer.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
     <script src="js/chat.js"></script>
         <script src="js/controllers.js"></script>
