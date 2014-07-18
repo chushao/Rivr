@@ -6,8 +6,10 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http) {
   //need to use spotify api to grab from existing list of songs?
   //or just grab the json with an ajax call
 
-  $scope.query = "chu";
+  $scope.query = "Summer";
   $scope.skipCounter = 1;
+  $scope.added = 0;
+  $scope.skip = false;
 
   $scope.searchSongs = function(){
     $http({method: 'GET', url: 'http://ws.spotify.com/search/1/track.json?q=' + $scope.query}).
@@ -44,9 +46,14 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http) {
             headers: {'contentType': 'application/json'}
         }).success(function() {
             $scope.sucess = "Success";
+
         }).error(function() {
             $scope.errorMessage = "Failure";
         });
+    $scope.added = 1;
+    $scope.query = "";
+    $scope.songs = [];
+    $scope.artists = [];
   }
 
   $scope.skipSong = function(){
@@ -59,6 +66,11 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http) {
     }
     var socket = io();
     socket.emit('skip');
+    $scope.skip = true;
   }
 
+    $scope.playSong = function(){
+    console.log("playing or muting song");
+    var audioElm = document.getElementById('audioPlayer'); audioElm.muted = !audioElm.muted;
+  }
 });
