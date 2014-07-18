@@ -6,7 +6,8 @@ html {
       -ms-text-size-adjust: 100%;
 }
 body {
-  margin: 0;
+  margin: 0px !important;
+  padding: 0px !important;
   font-family: 'Roboto', sans-serif;
   background-color: #373B44;
 }
@@ -167,5 +168,25 @@ ul.songlist li .song_length{
   font-size: 30px;
   font-weight:200;
 
+}
+
+.animate-enter {
+  -webkit-transition: 1s linear all; /* Chrome */
+  transition: 1s linear all;
+  opacity: 0;
+}
+
+.animate-enter.animate-enter-active {
+  opacity: 1;
+}
+
+.list-links{
+  width: 100%;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.list-format:hover{
+  background-color: red;
 }
 

@@ -14,8 +14,8 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->        
       <link rel="icon" type="image/png" href="img/rivr-icon.png">
-      <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-      <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+      <link rel="stylesheet" type="text/css" href="css/bootstrap1.css">
+      <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css"> -->
       <link rel="stylesheet" type="text/css" href="css/common.css">
       <link rel="stylesheet" type="text/css" href="css/chat.css">
          <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300italic,700' rel='stylesheet' type='text/css'>
@@ -24,7 +24,7 @@
 </head>
 
 
-<body ng-app="spotifyApp" ng-controller="SongListCtrl">
+<body ng-app="spotifyApp" ng-controller="SongListCtrl" ng-cloak>
 
 <nav class="navbar navbar-inverse" role="navigation">
   <div class="container-fluid">
@@ -54,10 +54,10 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-        <div class="blackmodal" ng-show="blackout==true">
+        <div class="blackmodal" ng-animate=" 'animate' " ng-show="blackout==true">
             <ul class="songs">
-              <li class="list-format" ng-repeat="song in songs | filter:query">
-                <a class="text-center" ng-click="selectSong(song.href)"><span class = "song-text">((song.name))</span> <span class = "artist-text"> ((song.artists[0].name))</span></a>
+              <li class="list-format" ng-animate=" 'animate' " ng-repeat="song in songs | filter:query">
+                <a class="list-links text-center" ng-click="selectSong(song.href)"><span class = "song-text">((song.name))</span> <span class = "artist-text"> ((song.artists[0].name))</span></a>
               </li>
             </ul>
         </div>
@@ -119,10 +119,6 @@
 
               <div class="right col-md-5" >
                 <div id="main_playlist_wrapper" class="playlist_wrapper well well-lg">
-                    <ul id="playlist_nav" class="nav nav-tabs" role="tablist">
-                        <li id="nowPlayingTab" class="active"><a href="#nowPlaying" data-toggle="tab">Now Playing</a></li>
-                    </ul>
-
                     <div id="playlist_tabs" class="tab-content">
                         <div id="nowPlaying" class="tab-pane active fade in">
                            
@@ -162,6 +158,7 @@
     <script src="js/bootstrap.js"></script>
     <script src='js/sketch.min.js'></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+     <script src="http://code.angularjs.org/1.2.2/angular-animate.min.js"></script>
     <script src="js/underscore.js"></script>
     <script src="js/chat.js"></script>
     <script src="js/controllers.js"></script>
