@@ -1,7 +1,7 @@
 var spotifyApp = angular.module('spotifyApp', []);
 spotifyApp.config(function($interpolateProvider) { $interpolateProvider.startSymbol('(('); $interpolateProvider.endSymbol('))'); });
 
-spotifyApp.controller('SongListCtrl', function ($scope, $http) {
+spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
   //populate songs from ajax call, which gets triggered no whenever they search
   //need to use spotify api to grab from existing list of songs?
   //or just grab the json with an ajax call
@@ -11,11 +11,32 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http) {
   $scope.added = 0;
   $scope.skip = false;
 
+  $scope.songName = "Not playing";
+  $scope.songDuration = "N/A";
+  $scope.songArtist = "N/A";
+  $scope.songAlbum = "N/A";
+
+    (function tick() {
+        $http.get('/metadata').success(function (data) {
+
+            //console.log(data);
+            $scope.data = data;
+
+            $scope.songName = data.name;
+            $scope.songDuration = data.duration;
+            $scope.songArtist = data.artist;
+            $scope.songAlbum = data.album;
+            $timeout(tick, 15000);
+        });
+    })();
+
   $scope.searchSongs = function(){
     $http({method: 'GET', url: 'http://ws.spotify.com/search/1/track.json?q=' + $scope.query}).
     success(function(data, status, headers, config) {
       // this callback will be called asynchronously
       // when the response is available
+      //  
+
       $scope.songs = data.tracks;
       $scope.artists = data.tracks.artists;
       // console.log("tracks: " + data.tracks);

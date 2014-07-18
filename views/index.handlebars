@@ -73,6 +73,10 @@
             <button ng-click="skipSong()" type="submit" >Skip Song</button>
             <button ng-click="playSong()" type="submit" >Play/Mute</button>
             <br/>((skipCounter - 1)) Votes to Skip
+            <br/>Name: ((songName))
+            <br/>Duration: ((songDuration))
+            <br/>Artist: ((songArtist))
+            <br/>Album: ((songAlbum))
         </div>
 
           <div class="col-md-10">
@@ -110,6 +114,7 @@
     <script src='http://soulwire.github.io/sketch.js/js/sketch.min.js'></script> 
     <!--<script src="js/visualizer.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="js/underscore.js"></script>
     <script src="js/chat.js"></script>
         <script src="js/controllers.js"></script>
 
