@@ -48,4 +48,10 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http) {
         });
   }
 
+  $scope.skipSong = function(){
+    console.log("skipping song");
+    var socket = io();
+    socket.emit('skip');
+  }
+
 });

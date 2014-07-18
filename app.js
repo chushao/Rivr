@@ -203,6 +203,23 @@ io.on('connection', function (socket) {
     });
   });
 
+  socket.on('skip', function (data) {
+    // we tell the client to execute 'new message'
+
+    skipButton++;
+    console.log(skipButton + "--------------");
+    if ((skipButton % 5) == 0) {
+        console.log("HIT");
+        skipButton = 0;
+        spotify.next(function(err) { 
+            if (err) {
+                console.log(err);
+            }
+        });
+    }
+    //res.redirect('/');
+  });
+
   // when the client emits 'add user', this listens and executes
   socket.on('add user', function (username) {
     // we store the username in the socket session for this client
