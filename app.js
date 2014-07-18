@@ -198,7 +198,7 @@ app.get('/getNextSong', function(req, res) {
         }
         iterate(0);
     console.log(returnJson);
-    if (returnJson === [] ) {
+    if (returnJson == [] ) {
         returnJson = [
         {
             "name": "Eyes FAKE",
