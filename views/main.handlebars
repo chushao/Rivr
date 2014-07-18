@@ -29,20 +29,8 @@
                     <img id="logo" src="img/rivr-logo.png"/>
                 </a>
             </div>
-            <!--<div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>--><!--/.nav-collapse -->
-        </div>
-    </div>
 
-    <div class="container" ng-controller="SongListCtrl">
-        <div id="row1" class="row">
-            <div class="left col-md-7"> 
-                <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-6">
                         <div class="input-group">
                           <div class="input-group-btn">
                             <input type="text" ng-model="query" class="song_search form-control" placeholder="Find a song">
@@ -58,8 +46,24 @@
                           </div><!-- /btn-group -->
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
-                </div><!-- /.row -->
+            <!--<div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>--><!--/.nav-collapse -->
+        </div>
+    </div>
 
+    <div class="container" ng-controller="SongListCtrl">
+        <div>
+            <audio id ="audioPlayer" autoplay>
+              <source src="http://10.16.189.76:8000/stream" autoplay type="audio/ogg">
+              Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div id="row1" class="row">
+            <div class="left col-md-7"> 
                 <!--chat-->
                 <div id="chat">
                     <ul class="pages">
@@ -103,24 +107,17 @@
                         <div id="playlist_wrapper">
                             <ul id="main_playlist" class="songlist">
                                 <li>
-                                    <span class="song_name">The Ultimate Showdown of Ultimate Destiny (super awesome untz untz remix)</span> 
-                                    <span class="artist_name">Lemon Demon</span>
-                                    <span class="song_length">3:14</span>
+                                    <span class="song_name">((songName))</span> 
+                                    <span class="artist_name">((songArtist))</span>
+                                    <!--<span class="song_length">((songDuration))</span>-->
                                 </li>
-                                <li>
-                                    <span class="song_name">I Am The Best</span> 
-                                    <span class="artist_name">2NE1</span>
-                                    <span class="song_length">4:24</span>
-                                </li>
-                                <li>
-                                    <span class="song_name">Clarity</span> 
-                                    <span class="artist_name">Zedd</span>
-                                    <span class="song_length">4:36</span>
+                                <li ng-repeat="song in upcomingSongs">
+                                    <span class="song_name">((song.name))</span> 
+                                    <span class="artist_name">((song.artist))</span>
                                 </li>
                             </ul>
                         </div>
-                            <button id="add_song" class="btn btn-default" data-toggle="modal" data-target="#addSongModal"><span class="glyphicon glyphicon-plus"></span>
-                            </button>
+    
                         </div>
                         <div id="recentlyPlayed" class="tab-pane fade">
                             <ul id="recently_played" class="songlist">
