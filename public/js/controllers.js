@@ -10,6 +10,7 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
   $scope.skipCounter = 1;
   $scope.added = 0;
   $scope.skip = false;
+  $scope.skipFlag = false;
 
   $scope.songName = "Not playing";
   $scope.songDuration = "N/A";
@@ -26,7 +27,7 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
             $scope.songDuration = data.duration;
             $scope.songArtist = data.artist;
             $scope.songAlbum = data.album;
-            $timeout(tick, 15000);
+            $timeout(tick, 1000 * 300);
         });
         $http.get('/artwork').success(function (data) {
             //console.log(data);
@@ -75,6 +76,13 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
             $scope.upcomingSongs = data;
             }
         });
+    })();
+
+    (function skipCheck() {
+
+            //console.log(data);
+            $scope.skipFlag = false;
+            $timeout(skipCheck, 1000*15);
     })();
 
   $scope.searchSongs = function(){
@@ -135,6 +143,7 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
     var socket = io();
     socket.emit('skip');
     $scope.skip = true;
+    $scope.skipFlag = true;
   }
 
   $scope.playSong = function(){
