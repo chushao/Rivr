@@ -25,10 +25,39 @@
 
 
 <body ng-app="spotifyApp" ng-controller="SongListCtrl">
+
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"> <img id="logo"  src="img/rivr-logo.png"/></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+            <input type="text" class="form-control" ng-focus="searchSongs()"  ng-blur="blackout=false" ng-change="searchSongs()" ng-model="query" placeholder="Search for a Song..."> 
+        </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
         <div class="blackmodal" ng-show="blackout==true">
             <ul class="songs">
               <li class="list-format" ng-repeat="song in songs | filter:query">
-                <a class="text-center" ng-click="selectSong(song.href)"><span class = "song-text">((song.name))</span> <span class = "artist-text">by ((song.artists[0].name))</span></a>
+                <a class="text-center" ng-click="selectSong(song.href)"><span class = "song-text">((song.name))</span> <span class = "artist-text"> ((song.artists[0].name))</span></a>
               </li>
             </ul>
         </div>
@@ -47,8 +76,7 @@
 
         <div class="row">
           <div class="col-md-2">
-            <!--Sidebar content-->
-            <input type="text" ng-focus="searchSongs()" ng-change="searchSongs()" ng-model="query" placeholder="Search for a Song..."> 
+            <!--Sidebar content--> 
             <br/><strong>Name:</strong> ((songName))
             <br/><strong>Duration:</strong> ((songDuration))
             <br/><strong>Artist:</strong> ((songArtist))
@@ -66,7 +94,7 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">
-                    <img id="logo" src="img/rivr-logo.png"/>
+                   
                 </a>
             </div>
             <!--<div class="collapse navbar-collapse">
@@ -78,8 +106,8 @@
         </div>
     </div>
 
-    <div class="container" ng-controller="SongListCtrl">
-        <div id="row1" class="row">
+    <div class="container">
+       <div id="row1" class="row">
             <div class="left col-md-7"> 
                 <!--chat-->
                 <div id="chat">
@@ -135,11 +163,6 @@
                 </div> <!--playlist wrapper-->
             </div> <!--end right column-->
         </div> <!--end row 1-->
-            <ul class="songs">
-              <li ng-repeat="song in songs | filter:query">
-                <a ng-click="selectSong(song.href)"><strong>((song.name))</strong> by ((song.artists[0].name))</a>
-              </li>
-            </ul>
               </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

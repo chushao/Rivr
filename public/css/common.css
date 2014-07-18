@@ -30,7 +30,8 @@ audio{
 }
 
 #logo{
-  height: 80px;
+  height: 30px;
+  margin-top: -5px;
 }
 
 #playlist_tabs{
