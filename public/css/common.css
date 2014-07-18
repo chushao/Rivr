@@ -188,6 +188,11 @@ airmail://message?mail=alex.yang%40cbsinteractive.com&messageid=CALb61nKARin8YUV
   z-index: 100;
 }
 
+#songDuration{
+  font-style: normal;
+  color: #ddd;
+}
+
 #currentSongInfo{
   padding-top: 27px;
 }
