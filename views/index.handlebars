@@ -43,6 +43,23 @@
         <button ng-click="skip=false" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <strong>Don't like this song?</strong> If 5 people vote to skip, the stream will go to the next song.
     </div>
+
+
+        <div class="row">
+          <div class="col-md-2">
+            <!--Sidebar content-->
+            <input type="text" ng-focus="searchSongs()" ng-change="searchSongs()" ng-model="query" placeholder="Search for a Song..."> 
+            <br/>((skipCounter - 1)) Votes to Skip
+            <br/><strong>Name:</strong> ((songName))
+            <br/><strong>Duration:</strong> ((songDuration))
+            <br/><strong>Artist:</strong> ((songArtist))
+            <br/><strong>Album:</strong> ((songAlbum))
+            <br/><strong>Upcoming Songs:</strong>
+            <li ng-repeat="song in upcomingSongs">
+                <strong>((song.name))</strong> by ((song.artist))</a>
+            </li>
+          </div>
+        </div>
     <div>
       <audio id ="audioPlayer" autoplay>
           <source src="http://10.16.189.76:8000/stream" autoplay type="audio/ogg">
@@ -168,23 +185,6 @@
     </div> <!--end container-->
 
 
-
-        <div class="row">
-          <div class="col-md-2">
-            <!--Sidebar content-->
-            <input type="text" ng-model="query" placeholder="Search for a Song..."> 
-            <button ng-click="searchSongs()" type="submit" >Search</button>
-            <br/>((skipCounter - 1)) Votes to Skip
-            <br/><strong>Name:</strong> ((songName))
-            <br/><strong>Duration:</strong> ((songDuration))
-            <br/><strong>Artist:</strong> ((songArtist))
-            <br/><strong>Album:</strong> ((songAlbum))
-            <br/><strong>Upcoming Songs:</strong>
-            <li ng-repeat="song in upcomingSongs">
-                <strong>((song.name))</strong> by ((song.artist))</a>
-            </li>
-          </div>
-        </div>
     </div>
     <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
