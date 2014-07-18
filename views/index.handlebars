@@ -44,7 +44,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"> <img id="logo"  src="img/rivr-logo.png"/></a>
+      <a class="navbar-brand" ng-click="fullScreen()"> <img id="logo"  src="img/rivr-logo.png"/></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,17 +58,17 @@
             </div>
 
             <div class="input-group-btn" ng-show="blackout==true">
-                <button class="btn btn-default" ng-click="blackout=false" type="submit"><i class="glyphicon glyphicon-remove"></i></button>
+                <button id="closeSearch" class="btn btn-default" ng-click="blackout=false" type="submit"><i class="glyphicon glyphicon-remove"></i></button>
             </div>
 
-            <input type="text" class="form-control search-form" ng-focus="searchSongs()"   ng-change="searchSongs()" ng-model="query" placeholder="Search for a Song..."> 
+            <input type="text"  class="form-control search-form" ng-focus="searchSongs()"   ng-change="searchSongs()" ng-model="query" placeholder="Search for a Song..."> 
         </div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
 
-    <div ng-show="added==1" class="alert-style alert alert-success alert-dismissible" role="alert">
+    <div ng-show="added==1" class="alert-style alert alert-warning alert-dismissible" role="alert">
         <button ng-click="added=false" type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <strong>Success!</strong> You have added a song to the stream.
     </div>
@@ -163,6 +163,7 @@
     <script src='js/sketch.min.js'></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
      <script src="http://code.angularjs.org/1.2.2/angular-animate.min.js"></script>
+    <script src="js/ui-utils.js"></script>
     <script src="js/underscore.js"></script>
     <script src="js/chat.js"></script>
     <script src="js/controllers.js"></script>

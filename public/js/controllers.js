@@ -1,4 +1,4 @@
-var spotifyApp = angular.module('spotifyApp', ['ngAnimate']);
+var spotifyApp = angular.module('spotifyApp', ['ngAnimate', 'ui.keypress']);
 spotifyApp.config(function($interpolateProvider) { $interpolateProvider.startSymbol('(('); $interpolateProvider.endSymbol('))'); });
 
 spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
@@ -20,6 +20,7 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
   $scope.songDurationSeconds = "N/A";
   $scope.songArtist = "N/A";
   $scope.songAlbum = "N/A";
+
 
     (function tick() {
         $http.get('/metadata').success(function (data) {
@@ -91,8 +92,18 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
             $timeout(skipCheck, 1000*300);
     })();
 
+  $scope.fullScreen = function(){
+    var element = document.getElementById("fullWidthPlayer");
+    element.webkitRequestFullScreen();
+  }
+
+  $scope.cancelFullScreen = function(){
+    document.webkitCancelFullScreen(); 
+  }
+
   $scope.searchSongs = function(){
-      $scope.blackout = true;
+      if($scope.query != ""){
+        $scope.blackout = true;
       $http({method: 'GET', url: 'http://ws.spotify.com/search/1/track.json?q=' + $scope.query}).
       success(function(data, status, headers, config) {
         // this callback will be called asynchronously
@@ -111,7 +122,7 @@ spotifyApp.controller('SongListCtrl', function ($scope, $http, $timeout) {
         // or server returns response with an error status.
         console.log("error retrieving data from Spotify");
       });
- 
+    }
   }
 
   $scope.selectSong = function(trackId){

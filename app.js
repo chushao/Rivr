@@ -111,6 +111,9 @@ app.get('/metadata', function(req, res) {
     });
 });
 
+app.get('/visualizer', function(req, res) {
+    res.render('visualizer');
+});
 
 //Return image artwork
 app.get('/artwork', function(req, res) {
